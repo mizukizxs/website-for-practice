@@ -252,3 +252,95 @@ footer {
     border-color: #8FA382;    /* Рамка становится твоего основного зеленого цвета */
     box-shadow: 0 0 5px rgba(143, 163, 130, 0.4); /* Мягкое свечение */
 }
+
+/* =============================================
+   АДАПТИВНАЯ ВЁРСТКА
+   ============================================= */
+
+/* --- 1. ШИРОКОУГОЛЬНЫЕ ЭКРАНЫ (от 1600px) --- */
+@media (min-width: 1600px) {
+    .container {
+        max-width: 1400px; /* Расширяем контент, чтобы не было пустых полей */
+    }
+    .hero-text h1 {
+        font-size: 7rem; /* Делаем заголовок еще мощнее */
+    }
+}
+
+/* --- 2. ПЛАНШЕТЫ (до 1024px) --- */
+@media (max-width: 1024px) {
+    .hero-container {
+        flex-direction: column; /* Текст и фото встают друг под другом */
+        text-align: center;
+    }
+    .hero-photo img {
+        width: 280px;
+        height: 280px;
+        border-radius: 140px; /* На планшетах делаем полный круг для симметрии */
+        border-right: 5px solid #E8EDE7;
+        margin-top: 30px;
+    }
+    .hero-text h1 {
+        font-size: 4rem;
+    }
+}
+
+/* --- 3. МОБИЛЬНЫЕ УСТРОЙСТВА (до 768px) --- */
+@media (max-width: 768px) {
+    /* Навигация */
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    /* Hero блок */
+    .hero-overlay {
+        padding: 50px 0;
+    }
+    .hero-text h1 {
+        font-size: 3rem;
+    }
+    .hero-photo img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%; /* На телефоне лучше смотрится круг */
+    }
+
+    /* Визитка Анастасия Жорова */
+    .info-card {
+        padding: 20px;
+        margin: 0 10px;
+    }
+
+    /* Галерея */
+    .gallery {
+        grid-template-columns: 1fr; /* Рисунки встают в одну колонку */
+        padding: 0 10px;
+    }
+    .gallery .work-card img {
+        height: auto; /* Чтобы рисунки не сплющивались на узких экранах */
+        max-height: 400px;
+    }
+
+    /* Подвал */
+    footer {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+        padding: 30px 20px;
+    }
+    .socials {
+        margin-bottom: 10px;
+    }
+
+    /* Страница регистрации */
+    .reg-card {
+        width: 90%; /* Карточка занимает почти весь экран телефона */
+        padding: 25px;
+    }
+}
