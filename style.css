@@ -1,0 +1,254 @@
+/* --- 1. БАЗОВАЯ СТРУКТУРА (ФИКСИРУЕМ ФУТЕР) --- */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* На всю высоту экрана */
+    background-color: #E8EDE7;
+    color: #2D352E;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Контейнер для центрирования контента */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Основной блок растягивается, выталкивая футер вниз */
+main {
+    flex: 1 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+    padding-bottom: 50px;
+}
+
+/* --- 2. НАВИГАЦИЯ --- */
+header {
+    background-color: #CFD8CF;
+    padding: 15px 0;
+    border-bottom: 2px solid #BDC7BD;
+    flex-shrink: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li { margin: 0 15px; }
+
+nav ul li a {
+    text-decoration: none;
+    color: #4A574A;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav ul li a:hover { color: #8FA382; }
+
+/* --- 3. HERO БЛОК (РАЗМЫТИЕ И ПОЛУКРУГ) --- */
+.hero {
+    background-image: url('pictures/forest.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    flex-shrink: 0;
+}
+
+.hero-overlay {
+    background-color: rgba(28, 45, 42, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 100px 0;
+}
+
+.hero-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hero-text h1 {
+    font-size: 5rem;
+    color: #E8EDE7;
+    margin: 0;
+    letter-spacing: 6px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.hero-text p {
+    font-size: 1.5rem;
+    color: #BABA9E;
+}
+
+.hero-photo img {
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 175px 0 0 175px; /* ПОЛУКРУГ */
+    border: 6px solid #E8EDE7;
+    border-right: none;
+    box-shadow: -10px 0 20px rgba(0,0,0,0.3);
+}
+
+/* --- 4. КАРТОЧКИ И ГАЛЕРЕЯ --- */
+main h2 {
+    font-size: 2rem;
+    color: #1C2D2A;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.info-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    border-left: 8px solid #8FA382;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.work-card img {
+    width: 100%;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.gallery .work-card img {
+    /* Шаг 1: Задаем фиксированную, одинаковую высоту для всех */
+    height: 450px;           /* Подбери высоту, которая тебе нравится (например, 400px или 500px) */
+
+    /* Шаг 2 (ОЧЕНЬ ВАЖНО!): Заставляет изображение заполнить контейнер без искажения */
+    object-fit: cover;      /* Обрежет лишнее сверху/снизу или по бокам, сохранив пропорции */
+
+    /* Обеспечиваем, что изображение занимает всю ширину своей карточки (сетки) */
+    width: 100%;
+
+    /* Скругление углов (как на твоем скриншоте) */
+    border-radius: 15px;
+    box-sizing: border-box; /* Для правильного расчета размеров */
+    transition: 0.3s;        /* Для плавного эффекта при наведении, если он есть */
+}
+
+.work-card img:hover { transform: translateY(-10px); }
+
+/* --- 5. ПОДВАЛ (ОСНОВНОЙ БЛОК) --- */
+footer {
+    flex-shrink: 0;
+    background-color: #1C2D2A;
+    color: #BABA9E;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    width: 100%;
+    box-sizing: border-box;
+    /* Здесь анимации не нужны, иначе весь подвал будет прыгать */
+}
+
+/* --- ССЫЛКИ В ПОДВАЛЕ --- */
+.socials a {
+    color: #BABA9E;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: bold;
+    display: inline-block; /* Это важно для работы анимации */
+    
+    /* Плавность изменений переносим сюда */
+    transition: all 0.3s ease; 
+}
+
+/* Эффект при наведении на конкретную ссылку */
+.socials a:hover {
+    color: #E8EDE7;
+    transform: translateY(-3px); /* Прыгает только ссылка, а не весь подвал */
+}
+
+/* Эффект при нажатии на ссылку */
+.socials a:active {
+    transform: scale(0.9);
+    opacity: 0.7;
+}
+
+.reg-body {
+    background-image: linear-gradient(rgba(28, 45, 42, 0.7), rgba(28, 45, 42, 0.7)), url('pictures/forest.jpg');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reg-card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    text-align: center;
+    width: 350px;
+}
+
+.reg-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #8FA382;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.reg-btn:hover { background-color: #7A8E6F; transform: scale(1.02); }
+
+.back-link {
+    color: #BABA9E;
+    text-decoration: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    /* --- СТИЛИЗАЦИЯ ПОЛЕЙ ВВОДА (ДОБАВИТЬ ЭТО) --- */
+}
+/* Нацеливаемся на все input внутри карточки регистрации */
+.reg-card input {
+    width: 100%;             /* Занимает всю доступную ширину родителя */
+    box-sizing: border-box;  /* ОЧЕНЬ ВАЖНО: чтобы padding не увеличивал ширину! */
+    
+    padding: 12px 15px;      /* Внутренние отступы (высота и отступ текста) */
+    margin-bottom: 15px;     /* Отступ между полями ввода */
+    
+    border: 2px solid #BDC7BD; /* Тонкая рамка (цвет шалфея) */
+    border-radius: 8px;      /* Скругление как у кнопки */
+    
+    font-size: 16px;         /* Размер шрифта placeholder */
+    transition: 0.3s;        /* Плавное изменение при клике */
+    
+    background: #F9FBF9;     /* Чуть-чуть подсвеченный фон поля */
+    color: #1C2D2A; 
+}
+/* Эффект при клике (фокусе) на поле ввода */
+.reg-card input:focus {
+    outline: none;            /* Убираем стандартную синюю рамку */
+    border-color: #8FA382;    /* Рамка становится твоего основного зеленого цвета */
+    box-shadow: 0 0 5px rgba(143, 163, 130, 0.4); /* Мягкое свечение */
+}
